@@ -1,36 +1,36 @@
---SELECT 
---    TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(total_deaths AS FLOAT), 0) AS result
---FROM CovidDeath
+SELECT 
+    TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(total_deaths AS FLOAT), 0) AS result
+FROM CovidDeath
 
---select location, date, total_cases, total_deaths,
---( TRY_CAST(total_deaths AS FLOAT) / NULLIF(TRY_CAST(total_cases AS FLOAT), 0) )*100 AS DeathPercanatge
---from CovidDeath
+select location, date, total_cases, total_deaths,
+( TRY_CAST(total_deaths AS FLOAT) / NULLIF(TRY_CAST(total_cases AS FLOAT), 0) )*100 AS DeathPercanatge
+from CovidDeath
+where location like '%states%'
+order by 1,2 desc
+
+
+select location, date,  population, total_cases,
+( TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(population AS FLOAT), 0) )*100 AS percent_Population_infected
+from CovidDeath
 --where location like '%states%'
---order by 1,2 desc
+order by 1,4 asc
+----
 
 
---select location, date,  population, total_cases,
---( TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(population AS FLOAT), 0) )*100 AS percent_Population_infected
---from CovidDeath
-----where location like '%states%'
---order by 1,4 asc
-------
-
-
---select location, population, max(total_cases) as Highst_infection,
---(max( TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(population AS FLOAT), 0) ))*100 AS percent_Population_infected
---from CovidDeath
-----where location like '%states%'
---group by location, population
---order by percent_Population_infected desc
+select location, population, max(total_cases) as Highst_infection,
+(max( TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(population AS FLOAT), 0) ))*100 AS percent_Population_infected
+from CovidDeath
+--where location like '%states%'
+group by location, population
+order by percent_Population_infected desc
 
 
 
---select location,  max(CAST(total_deaths as int)) as total_deaths_count
---from CovidDeath
---where continent <> ''
---group by location
---order by total_deaths_count desc
+select location,  max(CAST(total_deaths as int)) as total_deaths_count
+from CovidDeath
+where continent <> ''
+group by location
+order by total_deaths_count desc
 
 
 
@@ -77,4 +77,3 @@ join Covidconvinace  con
  where dea.continent <>' '
  order by 1,2,6
 
- ----1.00.19-----
