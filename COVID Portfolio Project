@@ -1,4 +1,4 @@
-SELECT 
+SELECT *
     TRY_CAST(total_cases AS FLOAT) / NULLIF(TRY_CAST(total_deaths AS FLOAT), 0) AS result
 FROM CovidDeath
 
