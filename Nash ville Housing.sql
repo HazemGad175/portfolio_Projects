@@ -121,7 +121,7 @@ select *,
 	 LegalReference
 order by UniqueID ) RowNum
 from Nashville_Housing)
-select *
+DELETE
 from RowNumcte
 -----where RowNum > 1
 order by PropertyAddress
